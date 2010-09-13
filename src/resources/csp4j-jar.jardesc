@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="MacRoman"?>
+<jardesc>
+<jar path="/Users/mkleine/eclipse/workspace/cspk4j/output/csp4j.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/cspk4j/src/resources/csp4j-jar.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+<storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+<selectedProjects/>
+<manifest generateManifest="true" mainClassHandleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.example{InteractiveConsoleExampleRunner.java[InteractiveConsoleExampleRunner" manifestLocation="/cspk4j/src/resources/MANIFEST" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{PrefixConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{Environment.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{Buffer.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.example{ScriptExampleRunner.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{SynchronizedBuffer.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{RenamingConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.example{InteractiveConsoleExampleRunner.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{InterruptConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{BufferImpl.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{HidingEnvironment.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{SequentialConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{AbstractProcessConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ProcessRunner.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{Process.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{HidingConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{TimeoutConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{Abortable.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{PostponedProcess.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{InternalChoiceConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ExternalChoiceConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{EventChooser.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp{ProcessFactory.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{CombinedCollection.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ParallelProcessEnvironment.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{TopLevelProcessEnvironment.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp{CSP2JavaTranslator.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{AbstractEnvironment.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ProcessStore.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ConsoleEventChooser.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{AliasConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{CombinedEventBuffer.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{RenamingEventBuffer.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ParallelConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{EventBuffer.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{EventExecutor.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{EventBufferImpl.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{SequentialProcessEnvironment.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ProcessConfig.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{TimeoutTimerTask.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{RenamingEnvironment.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.example{ExampleEventExecutor.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{ProcessesByEvent.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{SwingEventChooser.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/generated&lt;de.tub.swt.vates.csp"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.example{SemaphoreExampleRunner.java"/>
+<javaElement handleIdentifier="=cspk4j/src\/java&lt;de.tub.swt.vates.csp.runnable{SynchronizedEventBuffer.java"/>
+</selectedElements>
+</jardesc>

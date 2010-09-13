@@ -1,0 +1,11 @@
+channel a, b, c
+X = STOP
+Q = P [] P' [] SKIP
+P = a -> SKIP
+C = c -> SKIP
+P' = b -> Q
+SEQ = Q ; ICHOICE
+ICHOICE = (SKIP |~| X) |~| X
+EXT = SEQ [] C
+HIDE = C \{c}
+INTERRUPT = EXT /\ HIDE;C

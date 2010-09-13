@@ -1,0 +1,16 @@
+Q0 = a -> SKIP
+Claim0_0 = claim.0 -> Q1
+Claim0_1 = claim.1 -> SKIP
+Claim1_0 = claim.0 -> SKIP
+Claim1_1 = claim.1 -> Q1
+Release0 = release.0 -> P0
+Release1 = release.1 -> P1
+Claim0 = Claim0_0 [] Claim0_1
+Claim1 = Claim1_0 [] Claim1_1
+Q1_end = write -> SKIP
+Q1 = read -> Q1_end
+P0_start = Q0; Claim0
+P0 = P0_start;Release0
+P1_start = Q0; Claim1
+P1 = P1_start;Release1
+S = P1 [|{claim.0, claim.1}|] P0

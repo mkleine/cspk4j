@@ -1,0 +1,57 @@
+-- First, the set of values to be communicated 
+datatype FRUIT = apples | oranges | pears 
+-- Channel declarations 
+channel left,right,mid : FRUIT 
+channel ack 
+{-
+-- The specification is simply a single place buffer 
+COPY = left ? x -> right ! x -> COPY 
+-- The implementation consists of two processes communicating over 
+-- mid and ack 
+SEND = left ? x -> mid ! x -> ack -> SEND 
+REC = mid ? x -> right ! x -> ack -> REC 
+-- These components are composed in parallel and the internal comms hidden 
+SYSTEM = (SEND [| {| mid, ack |} |] REC) \ {| mid, ack |}
+-} 
+-- Checking "SYSTEM" against "COPY" will confirm that the implementation 
+-- is correct. 
+assert COPY [FD= SYSTEM
+assert SYSTEM [FD= COPY
+
+InputA = left.apples -> SKIP
+InputO = left.oranges -> SKIP
+InputP = left.pears -> SKIP
+OutputA = right.apples -> SKIP
+OutputO = right.oranges -> SKIP
+OutputP = right.pears -> SKIP
+CopyA = InputA ; CopyA'
+CopyO = InputO ; CopyO'
+CopyP = InputP ; CopyP'
+CopyA' = OutputA ; COPY
+CopyO' = OutputO ; COPY
+CopyP' = OutputP ; COPY
+COPY = []x:{CopyA,CopyO,CopyP}@x
+MidA = mid.apples -> SKIP
+MidO = mid.oranges -> SKIP
+MidP = mid.pears -> SKIP
+
+AckSend = ack -> SEND
+SendA' = MidA ; AckSend
+SendO' = MidO ; AckSend
+SendP' = MidP ; AckSend
+SendA = InputA ; SendA'
+SendO = InputO ; SendO'
+SendP = InputP ; SendP'
+SEND = []x:{SendA,SendO,SendP}@x 
+
+AckRec = ack -> REC
+RecA' = OutputA ; AckRec
+RecO' = OutputO ; AckRec
+RecP' = OutputP ; AckRec
+RecA = MidA ; RecA'
+RecO = MidO ; RecO'
+RecP = MidP ; RecP'
+REC = []x:{RecA,RecO,RecP}@x
+
+SendAndReceive = SEND [|{mid.apples, mid.oranges, mid.pears, ack}|] REC
+SYSTEM = SendAndReceive \{mid.apples, mid.oranges, mid.pears, ack}
