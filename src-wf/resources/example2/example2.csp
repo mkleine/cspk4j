@@ -1,0 +1,29 @@
+{-
+  Example workflow given by v.d.Aalst as Fig 1 in
+  
+  Pi Calculus Versus Petri Nets  
+    Let us eat "humble pie" rather than further inflate the "Pi hype"
+    
+-}
+channel a,b,c,d,e,f,g,h
+
+{- CSPm Version:
+L0 = b -> d -> (L1 [|{h}|]R1)
+R0 = c -> R1
+L1 = f -> h -> SKIP
+R1 = e -> g -> h -> SKIP
+P = a -> (L0 [|{e,g,h}|] R0)
+-}
+
+-- CSPm4J Version
+L0 = b -> L0'
+L0'= d -> L0''
+L0'' = L1 [|{h}|]R1
+R0 = c -> R1
+L1 = f -> L1'
+L1' = h -> SKIP
+R1 = e -> R1'
+R1' = g -> R1''
+R1'' = h -> SKIP
+P = a -> P'
+P'= L0 [|{e,g,h}|] R0

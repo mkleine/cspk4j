@@ -1,0 +1,120 @@
+channel tock
+
+channel lockDefs, unlockDefs
+channel poll,loadCSP,startCheck,checkResult,activateDef,loadClasses,reportError,
+printStatsCmd,deactivateDefCmd,selectDef,deactivateDef,startWfCmd,startWf,
+init,shutdown,reportWfError
+{-
+  This lock process protects the definitions
+-}
+DefLock = lockDefs -> DefLock'
+  DefLock' = unlockDefs -> DefLock
+
+{-
+  The loader process polls new process definitions from a directory
+  and loads them if they are not yet loaded.
+-}
+Loader = STOP [> Poll 
+  Poll = poll -> NewDefs
+  NewDefs = NewDef |~| Loader
+  NewDef = loadCSP -> NewDef'
+  NewDef' = ReportError |~| CheckDef
+  CheckDef = startCheck -> CheckDef'
+  CheckDef' = checkResult -> CheckDef''
+  CheckDef'' = CheckDef''' |~| CheckedDef
+  CheckDef''' = STOP [> CheckDef' 
+  CheckedDef = ReportError |~| LoadClasses
+  LoadClasses = loadClasses -> LoadClasses'
+  LoadClasses' = ReportError |~| DefLoaded
+  ReportError = reportError -> Loader
+  DefLoaded = lockDefs -> DefLoaded'
+  DefLoaded' = activateDef -> DefLoaded''
+  DefLoaded'' = unlockDefs -> NewDefs
+
+LoaderEntry = Poll\{poll,loadCSP,startCheck,checkResult,loadClasses,reportError,activateDef}
+
+{-
+  The PrintStats utility process allows to print internal statistics
+  of the Wf Server
+-}
+PrintStats = printStatsCmd -> SKIP
+
+{-
+  The DeactivateDef utility process allows to deactivate
+  workflow definitions.
+-}
+DeactivateDef = deactivateDefCmd -> Available
+Available = SKIP |~| DeactivateDef'
+DeactivateDef' = lockDefs -> DeactivateDef''
+DeactivateDef'' = selectDef -> DeactivateDef'''
+DeactivateDef''' = deactivateDef -> DeactivateDef''''
+DeactivateDef'''' = unlockDefs -> SKIP
+
+{-
+  The StartWf utility process allows to start a new workflow
+-}
+StartWf = startWfCmd -> Available'
+Available' = SKIP |~| StartWf'
+StartWf' = lockDefs -> StartWf''
+StartWf'' = selectDef -> StartWf'''
+StartWf''' = startWf -> StartWf''''
+StartWf'''' = unlockDefs -> StartWf'''''
+StartWf''''' = StartWf''''''|~|SKIP
+StartWf'''''' = reportWfError -> SKIP
+
+{-
+  The server control interface offers commands to the server admin
+  and executes them.
+-} 
+OfferMenu = []x:{PrintStats,DeactivateDef,StartWf}@x
+ServerControl = OfferMenu;ServerControl
+
+{-
+  When the server is running, its server processes are running
+  in parallel
+-}
+Running = Running'\{lockDefs,unlockDefs}
+Running' = DefLock [|{lockDefs,unlockDefs}|] Running'' 
+Running'' = ServerControl ||| LoaderEntry
+{-
+  This is the main sever process:
+  
+  initialize --> run --> shutdown --> STOP
+-}
+Shutdown = shutdown -> SKIP
+Run = Running /\ Shutdown
+WfServer = init -> Run
+
+controlEvents = {poll, loadCSP, startCheck,checkResult, activateDef, loadClasses, reportError,
+printStatsCmd, deactivateDefCmd, selectDef, deactivateDef, startWfCmd, startWf,reportWfError}
+
+assert DefLock [F= Running'\diff(Events,{lockDefs,unlockDefs})
+assert Running'\diff(Events,{lockDefs,unlockDefs}) [F= DefLock
+
+assert Running :[deadlock free [F]]
+assert shutdown -> SKIP [F= WfServer\diff(Events,{shutdown})
+assert WfServer :[livelock free]
+
+Timed = tock -> Timed'
+Timed' = []x:{Timed'',Timed'''}@x
+Timed'' = poll -> Timed
+Timed''' = checkResult -> Timed
+
+TimedPoll = Poll [|{poll, checkResult}|] Timed
+TimedLoaderEntry = TimedPoll\{poll,loadCSP,startCheck,checkResult,loadClasses,reportError,activateDef}
+
+TimedRunning = TimedRunning'\{lockDefs,unlockDefs}
+TimedRunning' = DefLock [|{lockDefs,unlockDefs}|] TimedRunning'' 
+TimedRunning'' = TimedServerControl ||| TimedLoaderEntry
+
+TimedServerControl = tock -> OfferMenu;TimedServerControl
+
+TimedRun = TimedRunning /\ Shutdown
+TimedWfServer = init -> TimedRun
+
+assert TimedWfServer :[livelock free[F]]
+
+TimedSpec = SKIP |~| tock -> TimedSpec
+TimedImpl = SKIP [] tock -> TimedImpl
+assert TimedSpec [FD= TimedWfServer\diff(Events,{tock})
+assert TimedWfServer\diff(Events,{tock}) [FD= TimedImpl

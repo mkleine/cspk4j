@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="MacRoman"?>
+<jardesc>
+<jar path="wf-csp4j/tmp/example2.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/wf-csp4j/src/resources/example2/example2.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+<storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+<selectedProjects/>
+<manifest generateManifest="true" manifestLocation="/cspk4j/src/resources/MANIFEST" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+<javaElement handleIdentifier="=wf-csp4j/src\/java&lt;org.cspk4j.wfsrv.example"/>
+<file path="/wf-csp4j/src/resources/example2/example2.csp"/>
+<file path="/wf-csp4j/src/resources/example2/wf.properties"/>
+</selectedElements>
+</jardesc>

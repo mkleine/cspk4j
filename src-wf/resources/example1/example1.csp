@@ -1,0 +1,5 @@
+channel a,b,c
+A = a -> B
+B = b -> SKIP
+C = c -> B
+D = A [] C
