@@ -1,10 +1,15 @@
 CSPK4J, CSP kernel for Java
 
-The CSPK4J framework offers CSP concurrency for Java. It supports a subset
-of CSPm [FDR] according to CSPk4J.g (ANTLR v3 grammar).
+The CSPK4J framework offers CSP concurrency for Java. It supports a
+subset of CSPm [FDR] according to CSPk4J.g (ANTLR v3 grammar).
 
+The semantics behind the CSPK4J framework ist described in
 
-===============================================================================
+    Moritz Kleine and J W Sanders. Simulating truly concurrent CSP.
+    Technical Report, UNU-IIST, 2010.
+    http://www.iist.unu.edu/www/docs/techreports/reports/report434.pdf
+
+======================================================================
 
 THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -20,3 +25,48 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 ----------------------------------------------------------------------
+
+Requirements
+
+Java > 1.5
+ANTLR 3.2
+
+----------------------------------------------------------------------
+
+Running the Examples
+
+Assuming that the CSPK4J framework and antlr 3.2 are on your
+classpath,
+
+>java org.cspk4j.example.InteractiveConsoleExampleRunner
+
+lets you choose one of the built-in examples and runs them. The
+"semaphore" example is the example application described in
+ 
+   Moritz Kleine and Steffen Helke. Low-Level Code Veriﬁcation Based
+   on CSP Models. Brazilian Symposium on Formal Methods (SBMF 2009).
+
+The following command launches the CSPm script with the default
+example configuration:
+
+> java org.cspk4j.example.ScriptExampleRunner
+
+Note that only single-operator processes are supported and that the
+CSPm Skript must not contain any functional parts.
+
+----------------------------------------------------------------------
+
+CSPK4J Workflow Server Prototype
+
+A Workflow Server protoype serves as case study for CSPK4J. It is
+presented in
+
+    Moritz Kleine and Thomas Göthel. Specification, Verification and
+    Implementation of Business Processes using CSP. 4th IEEE 
+    International Symposium on Theoretical Aspects of Software 
+    Engineering (TASE 2010).
+
+The zip file contains the necessary jars in the output directory. Two
+example process definitions reside in the tmp directory. The launch
+script must be adjusted so that FDR can be found, otherwise the 
+workflow server won't start.
