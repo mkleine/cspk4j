@@ -1,4 +1,5 @@
 CSPK4J, CSP kernel for Java
+Moritz Kleine, mkleine at cs tu-berlin de
 
 The CSPK4J framework offers CSP concurrency for Java. It supports a
 subset of CSPm [FDR] according to CSPk4J.g (ANTLR v3 grammar).
